@@ -1,0 +1,35 @@
+<div class="dashboard-container">
+  <div class="dashboard-state-dropdown">
+    <mat-form-field appearance="outline">
+      <mat-label>State</mat-label>
+      <mat-select [(ngModel)]="selectedState" (ngModelChange)="onSelectedStateChange()">
+        <mat-option *ngFor="let item of stateList" [value]="item.region_code">
+          {{item.region}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-spinner *ngIf="dataLoading" [diameter]="30"></mat-spinner>
+  </div>
+  <mat-grid-list cols="2" rowHeight="350px" *ngIf="selectedHealthMeasure">
+    <mat-grid-tile colspan="1" rowspan="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <h2>{{selectedHealthMeasure.region}} Statistics</h2>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <app-widget-read-only [healthMeasure]="selectedHealthMeasure"></app-widget-read-only>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="1" rowspan="1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <h2>{{selectedHealthMeasure.region}} Analytics</h2>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <app-widget-bar-chart [healthMeasure]="selectedHealthMeasure"></app-widget-bar-chart>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

@@ -1,0 +1,11 @@
+.bar-widget-container {
+  padding: 20px;
+}
+
+:host::ng-deep {
+  svg {
+    text {
+      fill: white !important;
+    }
+  }
+}
